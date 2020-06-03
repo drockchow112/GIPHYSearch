@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import ContactCard from './ContactCard';
+import Decrement from './Decrement';
 import { Component } from "react";
 import './App.css';
 
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <>
-      
+       <Decrement number={5}/>
       </>
     );
   }
