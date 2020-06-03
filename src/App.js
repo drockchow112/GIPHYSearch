@@ -1,26 +1,22 @@
 import React from 'react';
 import logo from './logo.svg';
+import ContactCard from './ContactCard';
+import { Component } from "react";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <>
+       <ContactCard name="John" 
+        mobile="5346782345" 
+        work="5437862356" 
+        email="john@gmail.com"
+        />
+      </>
+    );
+  }
 }
-
 export default App;
+
+
