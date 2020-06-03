@@ -13,6 +13,18 @@ class App extends Component {
         work="5437862356" 
         email="john@gmail.com"
         />
+
+       <ContactCard name="John" 
+       mobile="5346782345" 
+       work="5437862356" 
+       email="john@gmail.com"
+      />
+
+      <ContactCard name="John" 
+       mobile="5346782345" 
+       work="5437862356" 
+       email="john@gmail.com"
+      />
       </>
     );
   }
