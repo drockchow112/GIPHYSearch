@@ -9,9 +9,10 @@ class GIPHY extends Component {
   
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_API_KEY;
-      const urlTrending = `http://api.giphy.com/v1/gifs/trending?api_key=wIRPwyUkfS6s3qMTbD2T1jrPnxREDCF8`;
+      const urlTrending = "http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}";
   
       axios.get(urlTrending, { api_key: API_KEY }).then((response) => {
+          const giphy = this.props.giphy
           const giphies = response.data.data
           console.log(giphies)
           this.setState({giphy, giphies})
@@ -22,34 +23,14 @@ class GIPHY extends Component {
       this.setState({giphy: e.target.value });
     };
 
-    handleSearch = (e) => {
-      const giphy = this.props.giphy;
-      const API_KEY = process.env.REACT_APP_API_KEY;
-      const urlSearch = ``;
-  
-      axios.get(urlTrending, { api_key: API_KEY }).then((response) => {
-          const giphies = response.data.data
-          console.log(giphies)
-          this.setState({giphy, giphies})
-      }).catch((err) => console.log(err));
-    }
-
     render() {
       let display 
 
-      if() {
-
-      }
-
-
-
-
-      
       return (
         <div>
           <form>
             <input type="text" placeholder="Search.." onChange={this.handleChange}></input>
-            <button type="submit" onClick={this.handleSearch}>Search</button>
+            <button type="submit" >Search</button>
           </form>
 
             {this.state.giphies.map((giph) => (
