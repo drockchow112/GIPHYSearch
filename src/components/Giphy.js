@@ -5,31 +5,76 @@ import Search from "./Search"
 class GIPHY extends Component {
     constructor(props) {
       super(props);
-      this.state = {word: this.props.word, giphies:[]};
+      this.state = {word: this.props.word, giphies:[], search: this.props.search};
     }
-  
+
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_API_KEY;
-      const urlTrending = `http://api.giphy.com/v1/gifs/search?q=${this.state.word}api_key=${API_KEY}`;
+      const urlTrending = `http://api.giphy.com/v1/gifs/trending?&api_key=${API_KEY}`;
   
-      axios.get(urlTrending, { api_key: API_KEY }).then((response) => {
-          // const giphy = this.props.giphy;
-          const giphies = response.data.data
-          console.log(giphies)
-          this.setState({giphies})
-      }).catch((err) => console.log(err));
+      if(this.state.search === false) {
+        axios
+          .get(urlTrending, { api_key: API_KEY })
+          .then(response => {
+            // const giphy = this.props.giphy;
+            const giphies = response.data.data;
+            console.log(giphies);
+            this.setState({ word: this.props.word, giphies });
+          })
+          .catch(err => console.log(err));
+      } 
+    }
+  
+    componentDidUpdate(prevProps) {
+      const API_KEY = process.env.REACT_APP_API_KEY;
+      const urlSearch = `http://api.giphy.com/v1/gifs/search?q=${this.state.word}&api_key=${API_KEY}`;
+      const urlTrending = `http://api.giphy.com/v1/gifs/trending?&api_key=${API_KEY}`;
+
+
+
+      // if (prevProps.search === this.props.search) { 
+      //   axios
+      //     .get(urlTrending, { api_key: API_KEY })
+      //     .then(response => {
+      //       // const giphy = this.props.giphy;
+      //       const giphies = response.data.data;
+      //       console.log(giphies);
+      //       this.setState({ word: this.props.word, giphies });
+      //     })
+      //     .catch(err => console.log(err));
+      // } 
+
+      if (prevProps.word !== this.props.word) {
+        let word = this.props.word;
+        axios
+          .get(
+            `http://api.giphy.com/v1/gifs/search?q=${word}&api_key=${API_KEY}`,
+            { api_key: API_KEY }
+          )
+          .then(response => {
+            // const giphy = this.props.giphy;
+            const giphies = response.data.data;
+            console.log(giphies);
+            this.setState({ word: this.props.word, giphies });
+          })
+          .catch(err => console.log(err));
+      } else {
+        console.log("False");
+      }
     }
 
     handleChange = (e) => {
       this.setState({word: e.target.value });
     };
 
+    
+
     render() {
       
 
       return (
         <div> 
-          <Search/>
+          
           {/* <img src={this.state.giphies[0].images[0].downsized_large.url}/> */}
 
             {this.state.giphies.map((giph) => (

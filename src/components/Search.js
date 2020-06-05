@@ -5,7 +5,7 @@ import GIPHY from "./Giphy";
 class Search extends Component {
     constructor(props) {
         super(props);
-        this.state = {word: "", search: true}
+        this.state = {word: "", search: false}
     }
 
     handleChange = (e) => {
@@ -24,13 +24,14 @@ class Search extends Component {
         }
     }
 
-    showGIPHY()  {
-        if (this.state.search === true) {
-            return (
-                <GIPHY word = {this.state.word}/>
-            )
-        }
-    }
+    // showGIPHY()  {
+    //     if (this.state.search === true) {
+    //         return (
+    //             <GIPHY word = {this.state.word}/>
+    //         )
+    //     }
+    // }
+
     render() {
     
         return (
@@ -45,9 +46,7 @@ class Search extends Component {
                 Search
               </button>
             </form>
-            {
-                this.showGIPHY() 
-            }
+            <GIPHY word={this.state.word} search={this.state.search}/>
           </>
         );
     }
