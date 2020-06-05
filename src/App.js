@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Component } from "react";
-import GIPHY from './Giphy'
+import GIPHY from './components/Giphy'
+import Search from "./components/Search"
 import './App.css';
 
 
@@ -11,7 +12,8 @@ class App extends Component {
     return (
       <>
       <div class="mainDiv">
-        <GIPHY/> 
+        <Search/>
+        
       </div>
       </>
     );

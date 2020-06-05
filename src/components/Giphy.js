@@ -1,42 +1,41 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "axios"
+import Search from "./Search"
 
 class GIPHY extends Component {
     constructor(props) {
       super(props);
-      this.state = {giphy: "", giphies: []};
+      this.state = {word: this.props.word, giphies:[]};
     }
   
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_API_KEY;
-      const urlTrending = "http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}";
+      const urlTrending = `http://api.giphy.com/v1/gifs/search?q=${this.state.word}api_key=${API_KEY}`;
   
       axios.get(urlTrending, { api_key: API_KEY }).then((response) => {
-          const giphy = this.props.giphy
+          // const giphy = this.props.giphy;
           const giphies = response.data.data
           console.log(giphies)
-          this.setState({giphy, giphies})
+          this.setState({giphies})
       }).catch((err) => console.log(err));
     }
 
     handleChange = (e) => {
-      this.setState({giphy: e.target.value });
+      this.setState({word: e.target.value });
     };
 
     render() {
-      let display 
+      
 
       return (
-        <div>
-          <form>
-            <input type="text" placeholder="Search.." onChange={this.handleChange}></input>
-            <button type="submit" >Search</button>
-          </form>
+        <div> 
+          <Search/>
+          {/* <img src={this.state.giphies[0].images[0].downsized_large.url}/> */}
 
             {this.state.giphies.map((giph) => (
                 <li>
-                    <p>{giph.na}</p>
-                    <img src={giph.url} ></img>
+                    <p>{giph.id}</p>
+                    <img src={giph.images.fixed_height_small.url}></img>
                 </li>
             ))}
 
@@ -45,4 +44,4 @@ class GIPHY extends Component {
     }
   }
 
-  export default GIPHY
+  export default GIPHY;
