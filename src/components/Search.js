@@ -7,7 +7,7 @@ class Search extends Component {
     this.state = { word: "", search: false, limit: 5 };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
@@ -15,7 +15,7 @@ class Search extends Component {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     if (this.state.word !== null) {
       this.setState({ search: true });
@@ -33,7 +33,7 @@ class Search extends Component {
   render() {
     return (
       <>
-        <form>
+        <form className="App">
           <input
             type="text"
             placeholder="Search.."
