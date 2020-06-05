@@ -44,6 +44,7 @@ class Search extends Component {
             type="number"
             placeholder="Limit"
             name="limit"
+            min="0"
             onChange={this.handleChange}
           />
           {/* <input
