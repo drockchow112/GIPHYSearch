@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
 import { Component } from "react";
-import GIPHY from './components/Giphy'
-import Search from "./components/Search"
-import './App.css';
-
+import Search from "./components/Search";
+import "./App.css";
 
 class App extends Component {
-  
   render() {
     return (
       <>
-      <div class="mainDiv">
-        <Search/>
-        
-      </div>
+        <div className="App">
+          <h1>GIPHY Search</h1>
+          <Search />
+        </div>
       </>
     );
   }
 }
 export default App;
-
-
